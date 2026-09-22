@@ -1,0 +1,284 @@
+/* ============================================================
+   The Odyssey — Research Site
+   Tokens
+   ============================================================ */
+:root {
+  --ink: #14140F;
+  --ink-soft: #1C1C15;
+  --parchment: #F2ECDD;
+  --bronze: #C0903E;
+  --bronze-dim: #8B6B33;
+  --wine: #7A3226;
+  --slate: #2E3A4E;
+  --muted: #9A9384;
+  --rule: #33332A;
+
+  --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+
+  --max-w: 920px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--parchment);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--bronze); text-decoration: none; }
+a:hover { color: var(--parchment); }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--bronze);
+  outline-offset: 3px;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ---------- Top nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(20, 20, 15, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-header .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 32px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.site-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--parchment);
+}
+
+.site-title span { color: var(--bronze); }
+
+.chapter-nav {
+  display: flex;
+  gap: 22px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.chapter-nav a.current { color: var(--bronze); }
+
+/* ---------- Hero (home page) ---------- */
+.hero {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 88px 32px 64px;
+}
+
+.hero .kicker {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0 0 18px;
+  max-width: 46ch;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  line-height: 1.04;
+  margin: 0 0 28px;
+  color: var(--parchment);
+  max-width: 14ch;
+}
+
+.hero .thesis {
+  font-size: 1.15rem;
+  color: #D8D2C2;
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* ---------- Chapter index (table of contents) ---------- */
+.toc {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 40px 32px 120px;
+  border-top: 1px solid var(--rule);
+}
+
+.toc-heading {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 48px 0 8px;
+  color: var(--parchment);
+}
+
+.chapter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chapter-row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chapter-row:first-child { border-top: 1px solid var(--rule); }
+
+.chapter-num {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  color: var(--bronze-dim);
+  line-height: 1;
+  padding-top: 4px;
+}
+
+.chapter-row:hover .chapter-num { color: var(--bronze); }
+
+.chapter-body a {
+  display: block;
+  color: inherit;
+}
+
+.chapter-body h3 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--parchment);
+}
+
+.chapter-row:hover .chapter-body h3 { color: var(--bronze); }
+
+.chapter-body p {
+  margin: 0 0 10px;
+  color: #C9C2B2;
+  max-width: 60ch;
+  font-size: 0.98rem;
+}
+
+.chapter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.chapter-tags span {
+  border-left: 2px solid var(--wine);
+  padding-left: 8px;
+}
+
+/* ---------- Chapter page ---------- */
+.chapter-header {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 64px 32px 40px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chapter-header .back {
+  font-size: 0.88rem;
+  color: var(--muted);
+  display: inline-block;
+  margin-bottom: 28px;
+}
+
+.chapter-header .num {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--bronze);
+  margin: 0 0 6px;
+}
+
+.chapter-header h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 4.5vw, 3rem);
+  line-height: 1.1;
+  margin: 0 0 20px;
+  color: var(--parchment);
+  max-width: 20ch;
+}
+
+.chapter-header .question {
+  font-size: 1.1rem;
+  color: #D8D2C2;
+  max-width: 60ch;
+  margin: 0 0 22px;
+}
+
+.chapter-content {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 8px 32px 120px;
+}
+
+.section {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section:last-child { border-bottom: none; }
+
+.section h2 {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+  color: var(--parchment);
+}
+
+.placeholder {
+  font-style: italic;
+  color: var(--muted);
+  border-left: 2px solid var(--slate);
+  padding-left: 16px;
+  font-size: 0.95rem;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .site-header .inner { padding: 16px 20px; }
+  .chapter-nav { display: none; }
+  .hero { padding: 56px 20px 44px; }
+  .toc { padding: 24px 20px 80px; }
+  .chapter-row { grid-template-columns: 40px 1fr; gap: 16px; }
+  .chapter-header, .chapter-content { padding-left: 20px; padding-right: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
