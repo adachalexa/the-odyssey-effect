@@ -122,4 +122,110 @@
       }
     });
   };
+  /* groupedBar(canvasId, labels, datasets, opts)
+     datasets: [{ label, data, color }]. opts: { horizontal, stacked, yTitle, xTitle, valueSuffix, max, showValues } */
+  window.groupedBar = function (id, labels, datasets, opts) {
+    opts = opts || {};
+    var el = document.getElementById(id);
+    if (!el) return;
+    var horiz = !!opts.horizontal;
+    var valuePlugin = {
+      id: 'valueLabels',
+      afterDatasetsDraw: function (chart) {
+        if (!opts.showValues) return;
+        var ctx = chart.ctx;
+        ctx.save();
+        ctx.font = "600 12px 'IBM Plex Sans', sans-serif";
+        ctx.fillStyle = '#EDE4D3';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        chart.data.datasets.forEach(function (ds, i) {
+          chart.getDatasetMeta(i).data.forEach(function (bar, j) {
+            var v = ds.data[j];
+            if (v === null || v === undefined) return;
+            var txt = (opts.format ? opts.format(v) : v) + (opts.valueSuffix || '');
+            ctx.fillText(txt, bar.x, bar.y - 4);
+          });
+        });
+        ctx.restore();
+      }
+    };
+    new Chart(el, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: datasets.map(function (d) {
+          return { label: d.label, data: d.data, backgroundColor: d.color, borderWidth: 0, maxBarThickness: 46 };
+        })
+      },
+      plugins: [valuePlugin],
+      options: {
+        indexAxis: horiz ? 'y' : 'x',
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { top: opts.showValues ? 18 : 0 } },
+        plugins: {
+          legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, boxHeight: 8, padding: 18 } },
+          tooltip: {
+            backgroundColor: '#1F3A4D', titleColor: '#EDE4D3', bodyColor: '#EDE4D3',
+            borderColor: 'rgba(107,106,78,0.5)', borderWidth: 1, padding: 10
+          }
+        },
+        scales: {
+          x: { stacked: !!opts.stacked, grid: { display: horiz }, title: opts.xTitle ? { display: true, text: opts.xTitle } : undefined, ticks: { maxRotation: 0 } },
+          y: { stacked: !!opts.stacked, beginAtZero: true, max: opts.max, grid: { display: !horiz }, title: opts.yTitle ? { display: true, text: opts.yTitle } : undefined }
+        }
+      }
+    });
+  };
+
+  /* slopeChart(canvasId, leftLabel, rightLabel, items)
+     items: [{ name, left, right, color }]  (left/right are ranks, 1 = best) */
+  window.slopeChart = function (id, leftLabel, rightLabel, items) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var max = items.length;
+    var labelPlugin = {
+      id: 'slopeLabels',
+      afterDatasetsDraw: function (chart) {
+        var ctx = chart.ctx;
+        ctx.save();
+        ctx.font = "600 13px 'IBM Plex Sans', sans-serif";
+        ctx.textBaseline = 'middle';
+        chart.data.datasets.forEach(function (ds, i) {
+          var pts = chart.getDatasetMeta(i).data;
+          ctx.fillStyle = ds.borderColor;
+          ctx.textAlign = 'right';
+          ctx.fillText(ds.label + '  #' + ds.data[0], pts[0].x - 14, pts[0].y);
+          ctx.textAlign = 'left';
+          ctx.fillText('#' + ds.data[1] + '  ' + ds.label, pts[1].x + 14, pts[1].y);
+        });
+        ctx.restore();
+      }
+    };
+    new Chart(el, {
+      type: 'line',
+      data: {
+        labels: [leftLabel, rightLabel],
+        datasets: items.map(function (it) {
+          return {
+            label: it.name, data: [it.left, it.right],
+            borderColor: it.color, backgroundColor: it.color,
+            borderWidth: 3.5, pointRadius: 6, pointHoverRadius: 8, tension: 0
+          };
+        })
+      },
+      plugins: [labelPlugin],
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { left: 150, right: 150, top: 8, bottom: 4 } },
+        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        scales: {
+          x: { offset: false, grid: { display: false }, ticks: { font: { size: 14, weight: '600' }, color: '#EDE4D3' }, position: 'top' },
+          y: { reverse: true, min: 0.5, max: max + 0.5, grid: { display: false }, ticks: { display: false } }
+        }
+      }
+    });
+  };
 })();
