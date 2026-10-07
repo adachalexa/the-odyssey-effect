@@ -718,3 +718,35 @@ table.data.text td:first-child { color: var(--parchment); font-weight: 600; }
 
 /* two short lines under each chart: why it matters, what it shows */
 .figure-shows + .figure-shows { border-top: none; margin-top: 8px; padding-top: 0; }
+
+/* ---------- Lessons for Studios (draft) ---------- */
+.draft-note {
+  margin: 20px 0 0;
+  padding: 14px 18px;
+  max-width: 68ch;
+  border-left: 3px solid var(--terracotta);
+  background: rgba(164, 80, 46, 0.14);
+  font-size: 0.95rem;
+  color: var(--parchment);
+}
+.draft-note strong { color: var(--gold); }
+
+.badge-row { margin: 0 0 12px; }
+.badge {
+  display: inline-block;
+  padding: 4px 11px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+.badge.good { color: var(--gold); border-color: var(--gold); }
+.badge.part { color: #D8CFBB; border-color: var(--bronze); }
+.badge.prop { color: #E3A184; border-color: var(--terracotta); }
+
+.need {
+  margin: 18px 0 0;
+  max-width: 68ch;
+  font-size: 0.93rem;
+  color: #B9AF9A;
+}
+.need strong { color: var(--parchment); }

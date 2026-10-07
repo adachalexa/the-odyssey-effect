@@ -5,7 +5,7 @@ Static site, no build step. Five chapter pages + a home page linking them.
 ## Getting this live on GitHub Pages
 
 1. Create a new repo on GitHub (e.g. `the-odyssey-effect`).
-2. Upload every file in this folder to the repo root. There are no subfolders: all pages, `style.css` and `charts.js` sit together at the top level.
+2. Upload every file in this folder to the repo root. There are no subfolders: all pages (including `lessons-for-studios.html`), `style.css` and `charts.js` sit together at the top level.
 3. In the repo, go to **Settings → Pages**.
 4. Under **Build and deployment → Source**, choose **Deploy from a branch**.
 5. Under **Branch**, choose `main` and folder `/ (root)`, then **Save**.
