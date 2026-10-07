@@ -715,3 +715,6 @@ table.data.text td:first-child { color: var(--parchment); font-weight: 600; }
 .bar-fill.slate { background: #6E8CA0; }
 .dot.blue { background: #6E8CA0; }
 .dots-legend .blue::before { background: #6E8CA0; }
+
+/* two short lines under each chart: why it matters, what it shows */
+.figure-shows + .figure-shows { border-top: none; margin-top: 8px; padding-top: 0; }
