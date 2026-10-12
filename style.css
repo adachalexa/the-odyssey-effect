@@ -750,3 +750,15 @@ table.data.text td:first-child { color: var(--parchment); font-weight: 600; }
   color: #B9AF9A;
 }
 .need strong { color: var(--parchment); }
+
+/* ---------- Source lines under figures ---------- */
+.figure-source {
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  max-width: 68ch;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--olive-text);
+}
+.figure-source strong { color: var(--bronze); font-weight: 600; letter-spacing: 0.02em; }
