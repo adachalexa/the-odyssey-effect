@@ -783,3 +783,5 @@ table.data.text td:first-child { color: var(--parchment); font-weight: 600; }
   text-transform: uppercase;
   color: var(--gold);
 }
+
+.split-legend .d::before { background: #6E8CA0; }
