@@ -785,3 +785,18 @@ table.data.text td:first-child { color: var(--parchment); font-weight: 600; }
 }
 
 .split-legend .d::before { background: #6E8CA0; }
+
+/* Peer film comparison chart (interactive) */
+.cmp-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.cmp-tabs button { font: inherit; font-size: 0.86rem; color: var(--parchment); background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 5px 13px; cursor: pointer; }
+.cmp-tabs button:hover { border-color: var(--gold); }
+.cmp-tabs button.on { background: var(--gold); color: #0E1A24; border-color: var(--gold); font-weight: 600; }
+.cmp-tabs.films button { border-left-width: 5px; }
+.cmp-cols { display: flex; align-items: flex-end; gap: 26px; height: 270px; overflow-x: auto; padding: 22px 4px 0; }
+.cmp-grp { display: flex; align-items: flex-end; gap: 3px; height: 100%; position: relative; padding-bottom: 38px; min-width: 132px; }
+.cmp-grp b { position: relative; width: 20px; border-radius: 3px 3px 0 0; transition: opacity .2s; }
+.cmp-grp b em { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); font-style: normal; font-size: 0.66rem; color: var(--parchment); font-weight: 500; padding-bottom: 2px; }
+.cmp-grp small { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 0.78rem; color: #C9BFA9; line-height: 1.2; }
+.cmp-cols.dim b { opacity: .22; }
+.cmp-cols.dim b.hi { opacity: 1; }
+.cmp-cols.dim b:not(.hi) em { visibility: hidden; }
